@@ -1,3 +1,3 @@
 # Data Structures and Algorithms
 
-![javascript-certification](https://github.com/selimbiber/Data-Structures-and-Algorithms/assets/117529414/61b4d089-924c-490b-8ca9-88dcc893fe10)
+![freeCodeCamp org JS](https://github.com/selimbiber/My-Dev-Courses/assets/117529414/0dce68f0-3f08-4550-b7aa-687b18d27d16)
