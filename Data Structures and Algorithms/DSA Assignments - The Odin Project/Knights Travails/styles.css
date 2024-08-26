@@ -1,0 +1,47 @@
+body {
+  text-align: center;
+  background-color: brown;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+  border: 1.5px solid grey;
+  border-style: inset;
+}
+
+.blackcell {
+  background-color: black;
+}
+
+.whitecell {
+  background-color: white;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+img {
+  height: 75px;
+  width: 75px;
+}
+
+.clear-board-btn {
+  margin-top: 50px;
+}
+
+.display-div {
+  height: 200px;
+  width: 300px;
+  background-color: rgb(137, 141, 141);
+  text-align: center;
+  box-shadow: 10px 5px 5px black;
+}
