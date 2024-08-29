@@ -1,47 +1,112 @@
+/* Set box-sizing to border-box and adjust font size */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* equivalent to 10px */
+  tab-size: 4;
+  word-break: break-all;
+  overflow: hidden auto;
+
+  --white-bg-color: #fff;
+  --black-bg-color: #000;
+  --dark-text-color: #313131;
+  --light-text-color: #dddddd;
+}
+
+/* Reset default styles for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+*::before,
+*::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+/* Set base styles for the body */
 body {
+  min-height: 100dvh;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+  text-rendering: optimizeSpeed;
+  font-size: 1.6rem; /* equivalent to 16px */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans",
+    "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
   text-align: center;
   background-color: brown;
+  padding: 3rem;
+}
+
+h1 {
+  color: var(--dark-text-color);
+  text-align: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 25rem;
+    height: 0.5rem;
+    background-color: var(--dark-text-color);
+  }
+}
+
+.btn {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 0.5rem solid;
+  background-color: var(--white-bg-color);
+  color: var(--dark-text-color);
+  font-weight: bold;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background-color: var(--black-bg-color);
+    color: var(--light-text-color);
+  }
+}
+
+table {
+  margin: 5rem auto 0;
 }
 
 .cell {
+  cursor: pointer;
+  font-weight: bold;
   height: 100px;
   width: 100px;
   border: 1.5px solid grey;
   border-style: inset;
 }
 
-.blackcell {
-  background-color: black;
+.cell.white {
+  background-color: var(--white-bg-color);
+  color: var(--dark-text-color);
 }
 
-.whitecell {
-  background-color: white;
-}
-
-h1 {
-  color: black;
-  text-align: center;
-}
-
-.center {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+.cell.black {
+  background-color: var(--black-bg-color);
+  color: var(--light-text-color);
 }
 
 img {
-  height: 75px;
-  width: 75px;
+  height: 7rem;
+  width: 5rem;
 }
 
-.clear-board-btn {
-  margin-top: 50px;
-}
-
-.display-div {
-  height: 200px;
-  width: 300px;
-  background-color: rgb(137, 141, 141);
-  text-align: center;
-  box-shadow: 10px 5px 5px black;
+.controller-buttons-container {
+  margin-top: 5rem;
 }

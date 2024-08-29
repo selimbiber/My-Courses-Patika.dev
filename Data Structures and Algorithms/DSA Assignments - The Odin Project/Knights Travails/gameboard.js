@@ -1,11 +1,11 @@
 // Create the chess board module
-const gameBoard = () => {
+const gameboard = () => {
   // Instantiate variables and create chessboard table
   const defaultStartLocation = [0, 0];
+  const coordArray = [];
   const chessTable = document.createElement("table");
 
   // Create the board cells and apply position values to each cell
-  chessTable.setAttribute("class", "center");
   for (let i = 0; i < 8; i++) {
     const tableRow = document.createElement("tr");
     let cellRowCoord = Math.abs(i - 7);
@@ -17,12 +17,12 @@ const gameBoard = () => {
 
       // Loop through to shade odd valued cells
       if ((i + z) % 2 == 0) {
-        tableCell.setAttribute("class", "cell whitecell");
+        tableCell.setAttribute("class", "cell white");
         tableRow.appendChild(tableCell);
         tableCell.dataset.coordArray = [cellRowCoord, cellColumnCoord];
         coordArray.splice(0, 2);
       } else {
-        tableCell.setAttribute("class", "cell blackcell");
+        tableCell.setAttribute("class", "cell black");
         tableRow.appendChild(tableCell);
         tableCell.dataset.coordArray = [cellRowCoord, cellColumnCoord];
       }
@@ -40,14 +40,12 @@ const gameBoard = () => {
     }
   });
 
-  document.body.appendChild(chessTable);
+  document.querySelector("main").appendChild(chessTable);
 };
 
-const resetBoard = (function () {
-  const resetButton = document.querySelector(".clear-board-button");
-  resetButton.addEventListener("click", function () {
-    location.reload();
-  });
+(() => {
+  const resetButton = document.querySelector(".clear-board-btn");
+  resetButton.addEventListener("click", () => location.reload());
 })();
 
-export { gameBoard };
+export { gameboard };
