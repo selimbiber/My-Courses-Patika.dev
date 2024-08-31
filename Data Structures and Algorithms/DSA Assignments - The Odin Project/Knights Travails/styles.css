@@ -42,7 +42,12 @@ body {
     "Segoe UI Symbol", "Noto Color Emoji";
   text-align: center;
   background-color: brown;
-  padding: 3rem;
+  padding: 2.5rem;
+}
+
+.cell-col,
+.btn {
+  cursor: pointer;
 }
 
 h1 {
@@ -64,49 +69,91 @@ h1 {
   }
 }
 
-.btn {
-  cursor: pointer;
-  padding: 1rem 2rem;
-  border: 0.5rem solid;
-  background-color: var(--white-bg-color);
-  color: var(--dark-text-color);
-  font-weight: bold;
-  transition: background-color 0.1s ease-in-out;
+.controller-buttons-container {
+  margin-top: 3rem;
 
-  &:hover {
-    background-color: var(--black-bg-color);
-    color: var(--light-text-color);
+  .btn {
+    padding: 1rem 2rem;
+    border: 0.5rem solid;
+    background-color: var(--white-bg-color);
+    color: var(--dark-text-color);
+    font-weight: bold;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover {
+      background-color: var(--black-bg-color);
+      color: var(--light-text-color);
+    }
   }
 }
 
 table {
-  margin: 5rem auto 0;
+  margin: 2rem auto 0;
 }
 
-.cell {
-  cursor: pointer;
-  font-weight: bold;
-  height: 100px;
-  width: 100px;
+.cell-row {
+  position: relative;
+
+  span::after {
+    content: attr(data-cell-row-coord);
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    color: #fff;
+    top: 1.2rem;
+    left: -2rem;
+  }
+}
+
+.cell-col {
+  position: relative;
+  height: 5rem;
+  width: 5rem;
   border: 1.5px solid grey;
   border-style: inset;
+  transition: background-color 0.1s ease-in-out;
+
+  &::after {
+    content: attr(data-cell-col-coord);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  /* Numbers should not be displayed in cells with Knight */
+  &:has(img) {
+    &::after {
+      content: "";
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    background-color: gray !important;
+  }
 }
 
-.cell.white {
+.cell-col.white {
   background-color: var(--white-bg-color);
   color: var(--dark-text-color);
 }
 
-.cell.black {
+.cell-col.black {
   background-color: var(--black-bg-color);
   color: var(--light-text-color);
 }
 
 img {
-  height: 7rem;
-  width: 5rem;
-}
-
-.controller-buttons-container {
-  margin-top: 5rem;
+  height: 3rem;
+  width: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
