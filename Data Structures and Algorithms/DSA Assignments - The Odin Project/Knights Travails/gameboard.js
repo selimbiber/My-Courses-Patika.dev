@@ -69,7 +69,7 @@ export const gameboard = () => {
   cellNodes.forEach((cellNode) => {
     if (JSON.stringify(activeStartLocation) === cellNode.dataset.coordArray) {
       let knightImg = document.createElement("img");
-      knightImg.src = "./assets/knight.svg";
+      knightImg.src = "./knight.svg";
       knightImg.draggable = true;
       knightImg.addEventListener("dragstart", (event) => {
         event.dataTransfer.setData("text/plain", JSON.stringify(activeStartLocation));

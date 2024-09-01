@@ -3,10 +3,9 @@
 */
 
 import { gameboard } from "./gameboard.js";
+import { utils } from "./utils.js";
 
 (() => gameboard())();
-
-import { utils } from "./utils.js";
 
 document
   .querySelector(".clear-board-btn")

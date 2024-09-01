@@ -1,6 +1,6 @@
-// Employing a Graph BFS Algorithm
-
 import { utils } from "./utils.js";
+
+// Employing a Graph BFS Algorithm
 
 const squareRegistry = new Map();
 const infoContainer = document.querySelector(".result-info-container");
