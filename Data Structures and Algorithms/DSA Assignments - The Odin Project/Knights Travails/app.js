@@ -5,3 +5,9 @@
 import { gameboard } from "./gameboard.js";
 
 (() => gameboard())();
+
+import { utils } from "./utils.js";
+
+document
+  .querySelector(".clear-board-btn")
+  .addEventListener("click", utils.clearGameboard);

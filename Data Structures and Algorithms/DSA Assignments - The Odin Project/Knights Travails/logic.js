@@ -1,10 +1,13 @@
 // Employing a Graph BFS Algorithm
 
+import { utils } from "./utils.js";
+
 const squareRegistry = new Map();
+const infoContainer = document.querySelector(".result-info-container");
 
 // Get/Set current coords to the board
 const chessSquare = (x, y) => {
-  const [xPosition, yPosition] = [x, y];
+  const [rowCoord, colCoord] = [x, y];
   let predecessor;
 
   function generateKnightMoves() {
@@ -43,10 +46,10 @@ const chessSquare = (x, y) => {
     x >= min && x <= max && y >= min && y <= max;
 
   // Calculate new set of square coords against the offsets
-  const newSquareFrom = (xOffset, yOffset) => {
-    const [newX, newY] = [xPosition + xOffset, yPosition + yOffset];
+  const newSquareFrom = (rowOffset, colOffset) => {
+    const [newRow, newCol] = [rowCoord + rowOffset, colCoord + colOffset];
 
-    if (isWithinBoard(newX, newY)) return chessSquare(newX, newY);
+    if (isWithinBoard(newRow, newCol)) return chessSquare(newRow, newCol);
   };
 
   // Get/Set Map Constructor Object Name
@@ -64,12 +67,11 @@ const chessSquare = (x, y) => {
 
 export const knightsTravails = (start, finish) => {
   if (JSON.stringify(start) === JSON.stringify(finish)) {
-    console.log("The knight is already at the target location.");
+    console.error("The knight is already at the target location.");
     return; // Exit if start and finish are the same
   }
 
   squareRegistry.clear(); // Temizleme işlemi
-
   const origin = chessSquare(...start);
   const target = chessSquare(...finish);
 
@@ -102,38 +104,16 @@ export const knightsTravails = (start, finish) => {
   }
 
   if (path[0] !== origin.stringifyCurrentCoords()) {
-    console.log("No path found.");
+    console.error("No path found.");
     return;
   }
 
-  console.log(`The shortest path was ${path.length - 1} moves!`);
-  console.log("The moves were: ", path.join(" -> "));
+  infoContainer.innerHTML = `<h2>The shortest path was ${path.length - 1} moves!</h2>
+   <p>The moves were: ${path.join(" -> ")}</p>`;
 
   // Move knight along the path
   for (let i = 0; i < path.length - 1; i++) {
-    const [fromCoords, toCoords] = [path[i], path[i + 1]];
-    moveKnight(fromCoords, toCoords);
-  }
-};
-
-// Helper function to move the knight
-export const moveKnight = (fromCoords, toCoords) => {
-  const fromCell = document.querySelector(
-    `[data-cell-row-coord='${fromCoords[0]}'][data-cell-col-coord='${fromCoords[1]}']`
-  );
-  const toCell = document.querySelector(
-    `[data-cell-row-coord='${toCoords[0]}'][data-cell-col-coord='${toCoords[1]}']`
-  );
-  if (fromCell && toCell) {
-    const knightImg = fromCell.querySelector("img");
-    if (knightImg) {
-      // Check if the knight is already in the target cell
-      if (toCell.contains(knightImg)) {
-        console.log("Knight is already in the target cell.");
-        return; // Exit if the knight is already in the target cell
-      }
-      fromCell.removeChild(knightImg);
-      toCell.appendChild(knightImg);
-    }
+    const toCoords = JSON.parse(`[${path[i + 1]}]`);
+    utils.moveKnight(toCoords);
   }
 };
